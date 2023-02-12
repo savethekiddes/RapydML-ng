@@ -6,39 +6,33 @@ RapydML is a Pythonic abstraction for XML/HTML. The compiler generates HTML or H
 
 Note that RapydML is still in beta. Some features and syntax could change in the future. Feel free to contact us with your own suggestions, if you have any.
 
-
-Community
----------
-If you have questions, bug reports, or feature requests, feel free to post them on our mailing list:
-<http://groups.google.com/group/rapydml>
-
-
 Installation
 ------------
-You can download RapydML from the link at the top of the RapydML page on Pyjeon website (<http://pyjeon.com>) and extract it to a directory on your home computer. Alternatively, you can download it from our repository using the terminal directly (you will need Mercurial client installed):
+You can download RapydML from Github by clicking [here](https://github.com/savethekiddes/RapydML-ng/archive/refs/heads/main.zip) and extract it to a directory on your home computer. Alternatively, you can download it from our repository using the terminal directly:
 
-	hg clone https://pyjeon@bitbucket.org/pyjeon/rapydml
+	git clone https://github.com/savethekiddes/RapydML-ng.git
 
-Afterwards, navigate to `rapydml` directory, and run the following command to perform the installation:
+Afterwards, navigate to the root directory, and run the following commands to perform the installation:
 
+    pip install subprocess --user
 	python setup.py install
 
-This will install `rapydml` as a globally available command. Alternatively, you can also install RapydML using pip repository.
+This will allow you to compile `.pyml` projects.
 
 
 Compilation
 -----------
 Using RapydML is pretty straightforward. Assuming you have added an alias for it (or placed it in one of the directories covered by the system path), you can run it as follows:
 
-	rapydml <location of file>
+	python rapydml.py <location of file>
 
 RapydML also allows you to use alternative XML-like syntax. If you decide to do so, you can place your file in `markup` directory inside of RapydML and it will automatically be pulled into RapydML. You can then compile your file using a different markup:
 
-	rapydml --markupname <location of file>
+	python rapydml.py --markupname <location of file>
 
 RapydML already includes `HTML`, `HTML5`, and `ANY` markups you can use as examples. For more options and information, you can invoke rapydml's help:
 
-	rapydml -h
+	python rapydml.py -h
 
 
 Getting Started
