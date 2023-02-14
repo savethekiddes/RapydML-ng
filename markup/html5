@@ -62,7 +62,7 @@
 				<area>	alt, coords, shape
 				<link>	sizes
 			<source>	src
-			<style>		scoped
+			<style>+	scoped
 		<abbr>
 		<address>
 		<article>
