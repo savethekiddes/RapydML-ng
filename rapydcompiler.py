@@ -883,18 +883,19 @@ class Parser:
 						continue
 					raise ParserError("Variable '%s' used prior to declaration." % variable)
 			
-			self.verbatim_indent = self.tree.find_indent(line)
+			self.verbatim_indent = 0
 			if not self.creating_method:
 				self.handle_indent(indent, None)
 				self.last_opened_element = None
 				self.element_stack.append(None)
 		else:
 			# we're continuing to parse existing verbatim logic
+   
 			verbatim_properties = self.verbatim[self.current_verbatim]
 			if indent > self.verbatim_indent:
 				# still inside verbatim block
 				if not self.creating_method:
-					line = line[self.verbatim_indent+1:]
+					line = line[self.verbatim_indent + 1:]
 				
 					# plug in the variables, if they appear on this line
 					for variable in self.verbatim_vars[GLOBAL_VARS]:
