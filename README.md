@@ -1,42 +1,43 @@
-# RapydML-ng XML/HTML Abstraction Markup Language
+# RapydML XML/HTML Abstraction Markup Language
 
-What is RapydML-ng?
+What is RapydML?
 ----------------
-RapydML-ng is a Pythonic abstraction for XML/HTML. The compiler generates HTML or HTML-like templates for Rails, Django, web2py or other frameworks (via templates) from indented, Python-like syntax. RapydML-ng can also compile into arbitrary XML-like markup (such as SVG) based on a set of rules from user-defined template. These templates can have varying level of restrictions (compare the included lax HTML template against strict HTML5, for example).
+RapydML is a Pythonic abstraction for XML/HTML. The compiler generates HTML or HTML-like templates for Rails, Django, web2py or other frameworks (via templates) from indented, Python-like syntax. RapydML can also compile into arbitrary XML-like markup (such as SVG) based on a set of rules from user-defined template. These templates can have varying level of restrictions (compare the included lax HTML template against strict HTML5, for example).
 
-Note that RapydML-ng is still in beta. Some features and syntax could change in the future. Feel free to contact us with your own suggestions, if you have any.
+Note that RapydML is still in beta. Some features and syntax could change in the future. Feel free to contact us with your own suggestions, if you have any.
 
 Installation
 ------------
-You can download RapydML-ng from Github by clicking [here](https://github.com/savethekiddes/RapydML-ng/archive/refs/heads/main.zip) and extract it to a directory on your home computer. Alternatively, you can download it from our repository using the terminal directly:
+You can download RapydML from Github by clicking [here](https://github.com/savethekiddes/RapydML-ng/archive/refs/heads/main.zip) and extract it to a directory on your home computer. Alternatively, you can download it from our repository using the terminal directly:
 
 	git clone https://github.com/savethekiddes/RapydML-ng.git
 
-Afterwards, run the following commands to perform the installation:
+Afterwards, navigate to the root directory, and run the following commands to perform the installation:
 
     pip install subprocess --user
+	python setup.py install
 
-This will allow you to compile run RapydML-ng projects.
+This will allow you to compile `.pyml` projects.
 
 
 Compilation
 -----------
-Using RapydML-ng is pretty straightforward. Assuming you have added an alias for it (or placed it in one of the directories covered by the system path), you can run it as follows:
+Using RapydML is pretty straightforward. Assuming you have added an alias for it (or placed it in one of the directories covered by the system path), you can run it as follows:
 
 	python rapydml.py <location of file>
 
-RapydML-ng also allows you to use alternative XML-like syntax. If you decide to do so, you can place your file in `markup` directory inside of RapydML-ng and it will automatically be pulled into RapydML-ng. You can then compile your file using a different markup:
+RapydML also allows you to use alternative XML-like syntax. If you decide to do so, you can place your file in `markup` directory inside of RapydML and it will automatically be pulled into RapydML. You can then compile your file using a different markup:
 
 	python rapydml.py --markupname <location of file>
 
-RapydML-ng already includes `HTML`, `HTML5`, and `ANY` markups you can use as examples. For more options and information, you can invoke rapydml's help:
+RapydML already includes `HTML`, `HTML5`, and `ANY` markups you can use as examples. For more options and information, you can invoke rapydml's help:
 
 	python rapydml.py -h
 
 
 Getting Started
 ---------------
-RapydML-ng is pre-parser that allows you to write HTML (or any other XML-like markup) in more readable, Python-like format. The parser then generates HTML for you, automatically closing/aligning different HTML tags (it can even be told to avoid closing tags for certain elements - like !DOCTYPE). It's similar to SASS/SCSS, but for HTML (similar concept to HAML). Like SASS/SCSS/HAML, RapydML-ng generates the page before it's deployed, and not dynamically as it's being served, saving you CPU cycles. Take a look at the following HTML, for example:
+RapydML is pre-parser that allows you to write HTML (or any other XML-like markup) in more readable, Python-like format. The parser then generates HTML for you, automatically closing/aligning different HTML tags (it can even be told to avoid closing tags for certain elements - like !DOCTYPE). It's similar to SASS/SCSS, but for HTML (similar concept to HAML). Like SASS/SCSS/HAML, RapydML generates the page before it's deployed, and not dynamically as it's being served, saving you CPU cycles. Take a look at the following HTML, for example:
 
 	<html>
 		<head>
@@ -55,7 +56,7 @@ RapydML-ng is pre-parser that allows you to write HTML (or any other XML-like ma
 		</body>
 	</html>
 
-We can rewrite the above using RapydML-ng as follows:
+We can rewrite the above using RapydML as follows:
 
 	html:
 		head:
@@ -72,7 +73,7 @@ We can rewrite the above using RapydML-ng as follows:
 
 Loops and Code Reuse
 --------------------
-We can pass in attributes as if they're arguments in a function call. We can already see that RapydML-ng code is shorter and cleaner, but this becomes even more apparent in larger HTML files. Let us add a few images to our page to show that we support all major browsers, for example. We'll need to modify our content div as follows:
+We can pass in attributes as if they're arguments in a function call. We can already see that RapydML code is shorter and cleaner, but this becomes even more apparent in larger HTML files. Let us add a few images to our page to show that we support all major browsers, for example. We'll need to modify our content div as follows:
 
 	<div id="content">
 		I haven't yet put anything on this page
@@ -86,7 +87,7 @@ We can pass in attributes as if they're arguments in a function call. We can alr
 		</p>
 	</div>
 
-In RapydML-ng we can accomplish the same thing with less repeated code using a loop:
+In RapydML we can accomplish the same thing with less repeated code using a loop:
 
 	div(id="content"):
 		"I haven't yet put anything on this page"
@@ -107,7 +108,7 @@ But what if our alt attributes don't happen to match our image names? That can b
 
 Variables and Sequences
 -----------------------
-Notice how we declare variables in RapydML-ng. All variables must be preceeded by $, like in perl. While awkward at first, this actually allows us to more easily distinguish variables from HTML tags, and allows us better syntax highlighting of variables, something Python doesn't have. The assignment operator is := instead of the typical = sign. This is to avoid clashing with HTML's = sign if it happens to be part of the variable's value, as shown in example below:
+Notice how we declare variables in RapydML. All variables must be preceeded by $, like in perl. While awkward at first, this actually allows us to more easily distinguish variables from HTML tags, and allows us better syntax highlighting of variables, something Python doesn't have. The assignment operator is := instead of the typical = sign. This is to avoid clashing with HTML's = sign if it happens to be part of the variable's value, as shown in example below:
 
 	$src := src="smiley.gif", alt="A Smiley"
 	for $i in [0:100]:
@@ -123,7 +124,7 @@ We don't need to quote whatever we're assigning to the variable, the leading/lag
 
 Methods and HTML Chunks
 -----------------------
-If you find yourself reusing the same HTML in multiple places, but not in sequential order (preventing you from using a loop), you can define a method, which you can then invoke. A RapydML-ng method is a chunk of HTML, which then gets plugged in every time the method call occurs. For example, here is how we could create a navigation menu, reusing the same button logic:
+If you find yourself reusing the same HTML in multiple places, but not in sequential order (preventing you from using a loop), you can define a method, which you can then invoke. A RapydML method is a chunk of HTML, which then gets plugged in every time the method call occurs. For example, here is how we could create a navigation menu, reusing the same button logic:
 
 	def navbutton($text):
 		div(class='nav-button'):
@@ -155,12 +156,12 @@ Both, Foo and Bar, will append the children inside of the `section-content` div.
 
 Math and String Manipulation
 ----------------------------
-Like many other abstraction languages, RapydML-ng can do a lot of the common logic for you. It has no concept of unit conversion like SASS, but it can easily handle many other things, like string manipulation, arithmetic, and mixing colors.
+Like many other abstraction languages, RapydML can do a lot of the common logic for you. It has no concept of unit conversion like SASS, but it can easily handle many other things, like string manipulation, arithmetic, and mixing colors.
 
 
 ### Arithmetic and Colors
 
-RapydML-ng can handle basic arithmetic and color computations for you. For example, let's rewrite the above logic such that our navigation buttons start with dark blue and get brighter with each button:
+RapydML can handle basic arithmetic and color computations for you. For example, let's rewrite the above logic such that our navigation buttons start with dark blue and get brighter with each button:
 
 	$color := #004
 	def navbutton($text):
@@ -172,7 +173,7 @@ RapydML-ng can handle basic arithmetic and color computations for you. For examp
 			$color += #222
 			navbutton($i)
 
-Note that `$color` needs to be updated outside of a function. This is because RapydML-ng shadows function variables, like Python. Moving `$color += #222` inside the function will update a local copy of `$color`, which gets discarded after the function terminates. RapydML-ng is smart about colors. You can use the regular `#RRGGBB` format, shorthand `#RGB` form, or even html-accepted color name like `"Brown"`. When using html colors, it's important to use double-quotes around the color, otherwise it will be treated as a regular string. The color name itself, however, is not case sensitive, you can use "DarkBlue" or "darkblue", for example, or even "dArKbLuE". If no color with that name exists the string will be treated as a regular string. Mathematical computations are not limited to colors. You can also use them to compute dimensions of HTML elements, perform computations that get output on the page, or even concatenate strings:
+Note that `$color` needs to be updated outside of a function. This is because RapydML shadows function variables, like Python. Moving `$color += #222` inside the function will update a local copy of `$color`, which gets discarded after the function terminates. RapydML is smart about colors. You can use the regular `#RRGGBB` format, shorthand `#RGB` form, or even html-accepted color name like `"Brown"`. When using html colors, it's important to use double-quotes around the color, otherwise it will be treated as a regular string. The color name itself, however, is not case sensitive, you can use "DarkBlue" or "darkblue", for example, or even "dArKbLuE". If no color with that name exists the string will be treated as a regular string. Mathematical computations are not limited to colors. You can also use them to compute dimensions of HTML elements, perform computations that get output on the page, or even concatenate strings:
 
 	$height := 100
 	$padding := 2
@@ -188,119 +189,33 @@ You probably noticed the use of `+=`, which is a shorthand for incrementing. Her
 	$a *= $b*2		# equivalent to: $a := $a * ($b*2)
 	$a /= 5 + 2		# equivalent to: $a := $a / (5 + 2)
 
-Lastly, there is a caveat about color arithmetic. While RapydML-ng will limit min/max colors to be within allowed range, the color get converted to an integer when performing operations. This means that if you keep adding blue to a color that already reached maximum allowed amount of blue, RapydML-ng will start adding green. This behavior could be modified in the future such that each channel is independent.
+Lastly, there is a caveat about color arithmetic. While RapydML will limit min/max colors to be within allowed range, the color get converted to an integer when performing operations. This means that if you keep adding blue to a color that already reached maximum allowed amount of blue, RapydML will start adding green. This behavior could be modified in the future such that each channel is independent.
 
 
 ### Using Python Directly
 
-RapydML-ng will handle simple arithmetic and string concatenation for you, but what if you require more complex logic? RapydML-ng has access to the full firepower of python (or at least its stdlib, you can't import Python modules). For example, let's say we wrote the following function to generate a button linking to one of the social media websites:
+RapydML will handle simple arithmetic and string concatenation for you, but what if you require more complex logic? RapydML has access to the full firepower of python (or at least its stdlib, you can't import Python modules). For example, let's say we wrote the following function to generate a button linking to one of the social media websites:
 
 	def socialMedia($name):
 		div(class="social-media"):
 			a(href="www.$name.com"):
 				img(src="$name.png" alt="$name")
 
-The only problem is that the content of `$name` has to be in lowercase for the link to work. You could rename your PNG image to be in lowercase as well, but the `alt` text in all lowercase would look bad. Fortunately, RapydML-ng can invoke Python's native logic if you use `python` prefix. Let's rewrite the above logic to capitalize the displayed text:
+The only problem is that the content of `$name` has to be in lowercase for the link to work. You could rename your PNG image to be in lowercase as well, but the `alt` text in all lowercase would look bad. Fortunately, RapydML can invoke Python's native logic if you use `python` prefix. Let's rewrite the above logic to capitalize the displayed text:
 
 	def socialMedia($name):
 		div(class="social-media"):
 			a(href="www.$name.com"):
 				img(src="$name.png" alt=python.str.capitalize("$name"))
 
-Likewise, we could have instead used `python.str.lower()` if the `$name` was already capitalized before being passed into the function. RapydML-ng compiler also auto-imports `math` module, allowing you to use logic like `python.math.sin(1)`. The `python.` prefix is not needed for Python methods that are nested inside other Python methods, like the following example:
+Likewise, we could have instead used `python.str.lower()` if the `$name` was already capitalized before being passed into the function. RapydML compiler also auto-imports `math` module, allowing you to use logic like `python.math.sin(1)`. The `python.` prefix is not needed for Python methods that are nested inside other Python methods, like the following example:
 
 	python.math.sin(min(1, 2, 3, 4))
 
 
-Using Raw Text, HTML, or JavaScript
------------------------------------
-As you probably already noticed, none of the above features address the possibility of having non-XML-like data inside of your page. There are times, however, when you might want raw text on your page that doesn't get interpreted. For example, you might need to embed JavaScript or CSS directly inside of your HTML, or might want to insert a raw chunk of HTML inside a tag when you can't get the markup just right via RapydML-ng.
-
-
-### Verbatim Method
-
-There were multiple alternatives I looked into for this, in the end I settled on one that seemed cleanest. RapydML-ng introduces a verbatim() method, which if specified for the tag, will treat everything indented under the tag as raw text, putting it inside the HTML page as is. For example, let's add a Javascript tag. We can do it a couple different ways:
-
-	javascript = verbatim('<script type="text/javascript">','</script>')
-
-The second way, since we already have a 'script' tag defined for us by default that works exactly like we need to, is to pass in an existing tag to use as a template:
-
-	javascript = verbatim(script(type="text/javascript"))
-
-Now, should we choose to add raw JavaScript to our code, we can write it as follows:
-
-	body:
-		h1:
-			'Page Title'
-		javascript:
-			function factorial(n) {
-				if (n === 0) {
-					return 1;
-				}
-				return n * factorial(n - 1);
-			}
-		div:
-			label:
-				'Text goes here'
-
-As soon as indentation resets to same level or higher as the verbatim tag, the raw JavaScript stops, and we start interpreting tags again. There is also verbatim_line() method available, that works the same way, but condenses the code into a single line by replacing `\n` with spaces and removing indentation. This is useful when you want to compress the chunk of raw code into a single line.
-
-
-### Variables Inside of Verbatim Blocks
-
-It would be nice if the logic inside verbatim blocks would never need access to outside information. In real life, however, that's not always the case. Imagine that we need to include a chunk of JavaScript for creating a JSON call inside of our page. The format of this JSON call is identical across all of our pages on the website, with the only difference being the name of the page requested. The RapydML-ng for this might look something like this:
-
-	javascript:
-		$(document).ready(function() {
-				$.getJSON('call/json/get_docs/True?owner=pyjeon&repo=$page', function(html_docs) {
-					$("div#documentation").append(html_docs);
-				});
-			}
-
-The problem here, however, is that since `javascript` was defined as a verbatim tag, the variable `$page` will not get replaced. One work-around is to add this JavaScript to each page, modifying the value of `$page` individually for each use. Surely, there must be a better way. There is, RapydML-ng allows you to specify which variables are to be replaced on per-tag basis. You can specify them as arguments for the verbatim tag:
-
-	javascript($page):
-		$(document).ready(function() {
-				$.getJSON('call/json/get_docs/True?owner=pyjeon&repo=$page', function(html_docs) {
-					$("div#documentation").append(html_docs);
-				});
-			}
-
-Now every occurence of `$page` within the verbatim tag will be replaced. Note that the variables only apply to the current instance of the tag, and that only the specified values will get replaced:
-
-	$foo := "one"
-	$bar := "two"
-	
-	javascript:
-		var a = $foo + $bar;	// var a = $foo + $bar;
-	
-	javascript($foo):
-		var a = $foo + $bar;	// var a = "one" + $bar;
-	
-	javascript($bar):
-		var a = $foo + $bar;	// var a = $foo + "two";
-	
-	javascript($foo, $bar):
-		var a = $foo + $bar;	// var a = "one" + "two";
-
-
-### Using Other Languages
-
-Verbatim tag is convenient when you want to include raw JavaScript inside of your page. But what if you're using RapydScript, CoffeeScript, or something else for your JavaScript? The typical way to include those is by having the `<script>` tag link to the .js file directly instead of having the code inside. If it's just a few lines of code, however, it often makes sense to just implement it inside of the page itself. Still, it would be nice if you could write that snippet in your language of choice rather than JavaScript. And for cases like that, RapydML-ng offers `code_block()` method.
-
-`code_block` is `verbatim`'s big brother. It works almost the same way, except it passes the content through a sequence of shell commands of your choosing. The only requiremenet is that whatever the sequence of commands is, it must accept STDIN and return STDOUT (STDERR will be reported to you by RapydML-ng at compile time so you can investigate the problem). For example, let's say we want to be able to use RapydScript directly inside our webpages. Assuming RapydScript is already installed on the computer, you can add the following line to your page to create a tag that will automatically convert RapydScript code:
-
-	rapydscript = code_block(script(type="text/javascript"), \
-		' > /tmp/tempfile.pyj && rapydscript /tmp/tempfile.pyj && cat /tmp/tempfile.js')
-
-The above command works around the fact that RapydScript doesn't work with STDIN by dumping the input to a file first, and works around it not returning STDOUT by using `cat` command. The command would work the same way on Windows, where instead of `cat` you could use `type`. Now, you can use `rapydscript` tag the same exact way we used `javascript` tag in previous section. Don't worry if you're not comfortable with the shell, the above command is already included in `lib/common` for your convenience. If you include the following line in your RapydML-ng pages, you can automatically use `text`, `javascript`, and `rapydscript` tags:
-
-	import lib.common
-
-
 Using Django, web2py, Rails, etc.
 ---------------------------------
-RapydML-ng easily extends to support any template engine your heart desires with just a few lines defining how to handle the given template. Take a look at the following example that adds support for Django's for loops:
+RapydML easily extends to support any template engine your heart desires with just a few lines defining how to handle the given template. Take a look at the following example that adds support for Django's for loops:
 
 	django = TemplateEngine('<%% %s %%>')
 	django.for = create('for %s in %s:', 'endfor')
@@ -313,7 +228,7 @@ Note that %s is used to specify the insertion of passed in arguments later, also
 
 	django.out = create('= %s ')
 
-But how does RapydML-ng handle more complex template elements, such as an if/then/else block? With append() method, we can assign elif/else methods to the same consturct as an if statement. The following 3-liner adds support for if/then/else statements of any complexity:
+But how does RapydML handle more complex template elements, such as an if/then/else block? With append() method, we can assign elif/else methods to the same consturct as an if statement. The following 3-liner adds support for if/then/else statements of any complexity:
 
 	django.if = create('if %s:', 'endif')
 	django.elif = django.if.append('elif %s:')
@@ -339,7 +254,7 @@ Now we can use the def method to define any methods we want inside our template.
 	ul:
 		web2py.out(itemize1('www.google.com'))
 
-While the code in this example isn't shorter than the original, you will probably agree that it is cleaner. That's fine, but if you had to include language template definitions in every HTML file you write, you would probably lose interest in RapydML-ng pretty fast. To remedy this, you can use the `import` statement. Feel free to take all your Django/Web2py/Rails definitions and dump them into a separate file, naming it django.pyml, for example. Now add the following line to each one of your files that needs to use it:
+While the code in this example isn't shorter than the original, you will probably agree that it is cleaner. That's fine, but if you had to include language template definitions in every HTML file you write, you would probably lose interest in RapydML pretty fast. To remedy this, you can use the `import` statement. Feel free to take all your Django/Web2py/Rails definitions and dump them into a separate file, naming it django.pyml, for example. Now add the following line to each one of your files that needs to use it:
 
 	import django
 
@@ -347,27 +262,27 @@ Now you can even share your Django definitions with other developers. To keep th
 
 	import views.templates.django
 
-The notable difference here between Python and RapydML-ng is the lack of namespaces. That means we would still reference the template engine by the same name as it's declared in the template file, rather than as we import it. So we would invoke the for loop as django.for(...) rather than views.templates.django.for(...). RapydML-ng's import mechanism isn't as complex as Python's, we simply concatenate the contents of imported files into the main one, checking only that we don't import the same file multiple times.
+The notable difference here between Python and RapydML is the lack of namespaces. That means we would still reference the template engine by the same name as it's declared in the template file, rather than as we import it. So we would invoke the for loop as django.for(...) rather than views.templates.django.for(...). RapydML's import mechanism isn't as complex as Python's, we simply concatenate the contents of imported files into the main one, checking only that we don't import the same file multiple times.
 
 To make it easier to write HTML, as well as create new templates, I have included templates for web2py, Django, and Rails, they're inside the `lib` directory. Feel free to use them to write your own web pages, as well as develop new templates for other engines. If you do plan to use a template engine, I suggest you also read the Advanced Usage section at the end. To add one of the included template engines to your project, simply add the following line at the top of your file:
 
 	import lib.web2py
 
 
-RapydML-ng vs HAML
+RapydML vs HAML
 ---------------
 Admittedly, I started this as an afternoon hobby project, while being too naive to check that something like HAML already exists. After looking at HAML, however, I quickly realized that I like my solution much more than HAML. HAML takes the Rails approach, where it assumes things for you, and if those assumptions are correct, 'magic' happens. If they're not, you will spend a lot of time banging your head against a wall. HAML assumes that most tags will be DIVs, for example, replacing forgotten tags with DIVs for you. This assumption probably will not hold in the future. HTML5 already added multiple new tags (header, footer, article, nav, etc.) to reduce the number of DIVs needed on a page, and more tags will likely follow. HAML also also assumes that you will be using it with Rails to generate .erb files, you're out of luck if you use it with Django or Web2py. Like Rails, it's very good for doing things it was designed to do, but not something the developers didn't account for.
 
-RapydML-ng takes a more Pythonic approach, being simple, extensible, and explicit. You can extend it as you see fit, and it makes very few assumptions for you. You will also notice that RapydML-ng code, while slightly longer, is much more readable than HAML, taking the Python approach here as well. You spend a lot more time looking at the code than writing it, so why make the code hard to read?
+RapydML takes a more Pythonic approach, being simple, extensible, and explicit. You can extend it as you see fit, and it makes very few assumptions for you. You will also notice that RapydML code, while slightly longer, is much more readable than HAML, taking the Python approach here as well. You spend a lot more time looking at the code than writing it, so why make the code hard to read?
 
-Additionally, RapydML-ng is more powerful than HAML, even allowing the use of Python logic directly within the page. But perhaps the biggest advantage of RapydML-ng is how customizable it is. By default, RapydML-ng compiles into HTML and is very lax about HTML version, supporting any tags and attributes from HTML1.0 up until HTML5. It also includes a stricter HTML5 template in the `markup` directory, which you can use to ensure your web page is HTML5-compliant. The later template not only checks that your tags are valid, but also that you're using supported HTML5 attributes for them (for example, HTML5 dropped `bgcolor` attribute for `body` tag, and HTML5 template will tell you about that). Similarly, you can create new templates, specifying desired tag names as well as control how strict the template is (refer to `markup/html5` to understand template layout). Once done, just place the template into the `markup` directory, and it will automatically get pulled in by RapydML-ng's compiler. Note that template's filename will become the name of the flag to invoke it, so if you add a file named `svg1`, you will need to invoke the compiler as follows to use it:
+Additionally, RapydML is more powerful than HAML, even allowing the use of Python logic directly within the page. But perhaps the biggest advantage of RapydML is how customizable it is. By default, RapydML compiles into HTML and is very lax about HTML version, supporting any tags and attributes from HTML1.0 up until HTML5. It also includes a stricter HTML5 template in the `markup` directory, which you can use to ensure your web page is HTML5-compliant. The later template not only checks that your tags are valid, but also that you're using supported HTML5 attributes for them (for example, HTML5 dropped `bgcolor` attribute for `body` tag, and HTML5 template will tell you about that). Similarly, you can create new templates, specifying desired tag names as well as control how strict the template is (refer to `markup/html5` to understand template layout). Once done, just place the template into the `markup` directory, and it will automatically get pulled in by RapydML's compiler. Note that template's filename will become the name of the flag to invoke it, so if you add a file named `svg1`, you will need to invoke the compiler as follows to use it:
 
 	rapydml --svg1 file.pyml
 
 
 Advanced Usage
 --------------
-If you decide to use RapydML-ng as the main tool for building your HTML, you might want to be familiar with some advanced features and tricks. If that's the case, this section is for you.
+If you decide to use RapydML as the main tool for building your HTML, you might want to be familiar with some advanced features and tricks. If that's the case, this section is for you.
 
 
 ### Nesting Content Inside Methods
@@ -402,20 +317,20 @@ Without ability to control the indentation, you would be limited to placing your
 
 ### HTML Rendering Optimizations
 
-If you're using web2py/Rails/Django or similar engine, you might have noticed that RapydML-ng can handle some of the logic you previously relied on your templating engine for (things like combining content from multiple page templates/chunks, repeating portions of your HTML within the same page, etc.). You might be curious which solution is better. For that we'll need to understand what happens behind the scenes on your web server. Engines like web2py, Django, or Rails are useful for generating dynamic content that gets plugged into your HTML or even reducing the amount of repeated HTML markup between multiple web pages. They keep the code maintainable and ensure that you only need to make a change in one place to affect common logic on all of your your web pages.
+If you're using web2py/Rails/Django or similar engine, you might have noticed that RapydML can handle some of the logic you previously relied on your templating engine for (things like combining content from multiple page templates/chunks, repeating portions of your HTML within the same page, etc.). You might be curious which solution is better. For that we'll need to understand what happens behind the scenes on your web server. Engines like web2py, Django, or Rails are useful for generating dynamic content that gets plugged into your HTML or even reducing the amount of repeated HTML markup between multiple web pages. They keep the code maintainable and ensure that you only need to make a change in one place to affect common logic on all of your your web pages.
 
-Some of that niche, however, can be better addressed by RapydML-ng. For example, you're probably familiar with the following line from Django (or its equivalent web2py or Rails):
+Some of that niche, however, can be better addressed by RapydML. For example, you're probably familiar with the following line from Django (or its equivalent web2py or Rails):
 
 	{% extends basic.html %}
 
-For those unfamiliar with it, the above line includes HTML from basic.html inside of the current page. This is a useful technique to avoid unnecessary copies of HTML that's common to multiple pages (this includes navigation menus, website logo, etc.). The above logic, however, can also be substituted with RapydML-ng's `import` statement, importing RapydML-ng logic from another page. For example, I can create a template.pyml file, declararing a function for generating a chunk of reusable HTML inside of it, and then invoke that function in every place I want that HTML to appear. Which solution is better?
+For those unfamiliar with it, the above line includes HTML from basic.html inside of the current page. This is a useful technique to avoid unnecessary copies of HTML that's common to multiple pages (this includes navigation menus, website logo, etc.). The above logic, however, can also be substituted with RapydML's `import` statement, importing RapydML logic from another page. For example, I can create a template.pyml file, declararing a function for generating a chunk of reusable HTML inside of it, and then invoke that function in every place I want that HTML to appear. Which solution is better?
 
-If you're an experienced web developer, you probably know that on most hosting services storage space (especially for text/html) is relatively cheap compared to bandwidth and CPU usage. The bandwidth requirements in this case are the same, since both, template engine and RapydML-ng logic happens before the page is served to the client. The main difference is that by using `extends`, you force your template engine to dynamically generate that HTML content before serving it to the client (using up CPU cycles, smart engines will probably cache this data), while by using `import` you make your compiler generate that HTML once and serve it repeatedly to your clients (using up a bit more storage space, which is not even significant when comparing it to storage taken up by images and other multimedia files). As a rule of thumb, I recommend using RapydML-ng's logic over Django/Rails/web2py unless it's something that requires information that will not be available until runtime (i.e. news that you retrieve from the database, interactive form that deals with user input). It's not too different from preferring CSS over JavaScript for styling that doesn't change dynamically.
+If you're an experienced web developer, you probably know that on most hosting services storage space (especially for text/html) is relatively cheap compared to bandwidth and CPU usage. The bandwidth requirements in this case are the same, since both, template engine and RapydML logic happens before the page is served to the client. The main difference is that by using `extends`, you force your template engine to dynamically generate that HTML content before serving it to the client (using up CPU cycles, smart engines will probably cache this data), while by using `import` you make your compiler generate that HTML once and serve it repeatedly to your clients (using up a bit more storage space, which is not even significant when comparing it to storage taken up by images and other multimedia files). As a rule of thumb, I recommend using RapydML's logic over Django/Rails/web2py unless it's something that requires information that will not be available until runtime (i.e. news that you retrieve from the database, interactive form that deals with user input). It's not too different from preferring CSS over JavaScript for styling that doesn't change dynamically.
 
 
 ### Writing DRY HTML/XML
 
-RapydML-ng does not evaluate the logic inside a method until it actually runs (gets invoked by logic not wrapped in a method). This means that you can call methods from other methods before they're declared. While subtle, this is a very useful feature. You can use this to take the importing idea presented in previous section a step further and do some really neat things with your website. For example, if you have a `template.pyml` file that defines `header_html()` and `footer_html()` methods (where header will take care of `<head>` declaration as well as the banner), your `index.pyml` will probably look like this:
+RapydML does not evaluate the logic inside a method until it actually runs (gets invoked by logic not wrapped in a method). This means that you can call methods from other methods before they're declared. While subtle, this is a very useful feature. You can use this to take the importing idea presented in previous section a step further and do some really neat things with your website. For example, if you have a `template.pyml` file that defines `header_html()` and `footer_html()` methods (where header will take care of `<head>` declaration as well as the banner), your `index.pyml` will probably look like this:
 
 	import template
 	
@@ -459,7 +374,7 @@ The result is that our pages are very clean and all would-be repetitive content 
 
 ### Nested Templates and Conditional Logic
 
-RapydML-ng does not have `if/else` statements, and for a good reason. RapydML-ng is meant to make HTML cleaner, not more complicated. Adding more power than is needed to a language only makes it harder to read someone else's code. Since HTML is not meant to be dynamic, conditional logic would do more harm than good - especially when one developer does something fancy and another developer needs to make sense of it later.
+RapydML does not have `if/else` statements, and for a good reason. RapydML is meant to make HTML cleaner, not more complicated. Adding more power than is needed to a language only makes it harder to read someone else's code. Since HTML is not meant to be dynamic, conditional logic would do more harm than good - especially when one developer does something fancy and another developer needs to make sense of it later.
 
 However, there are valid cases when you need to generate pages with very similar layout, but not the same. Instead of having two very similar templates, you could use the latent method evaluation described in the previous section to create conditional logic within templates.
 
@@ -491,7 +406,7 @@ We can now invoke the same `product_page()` function, but the generated content 
 
 ### Customizing Markup
 
-RapydML-ng is not limited to HTML. If you open up the `markup` directory, you will notice 3 files: `any`, `html`, and `html5`. `html` is the default markup RapydML-ng assumes if you omit the markup modifier when compiling your `.pyml` file. This markup is designed to limit you to valid HTML tags, but does not enforce any attribute limitations or HTML versions. `html5` is much stricter, enforcing valid HTML5 tags as well as attributes. Finally, `any` is the most relaxed of the 3, allowing you to use any tag with any attributes. `any` markup assumes every tag which has not been explicitly defined as a method (via the use of `def` keyword inside of your `.pyml` file) to be a valid markup tag.
+RapydML is not limited to HTML. If you open up the `markup` directory, you will notice 3 files: `any`, `html`, and `html5`. `html` is the default markup RapydML assumes if you omit the markup modifier when compiling your `.pyml` file. This markup is designed to limit you to valid HTML tags, but does not enforce any attribute limitations or HTML versions. `html5` is much stricter, enforcing valid HTML5 tags as well as attributes. Finally, `any` is the most relaxed of the 3, allowing you to use any tag with any attributes. `any` markup assumes every tag which has not been explicitly defined as a method (via the use of `def` keyword inside of your `.pyml` file) to be a valid markup tag.
 
 Using one of these as an example, you can create your own rules for any other *ML-like markup (SVG, XSLT, or XML that's custom to your project). The basic rules are very simple, but their combinations allow for very powerful customizations:
 
@@ -570,7 +485,7 @@ You can repeat the same tag multiple times, this is typically useful when it reu
 		<input>
 
 ##### Wildcard Elements/Tags
-`<*>` A special tag, its presence means that omitted tags are allowed in pyml as well (and will automatically be inferred to use <tag></tag> format. Without this tag, RapydML-ng will complain about any tags not specifically mentioned in the markup file.
+`<*>` A special tag, its presence means that omitted tags are allowed in pyml as well (and will automatically be inferred to use <tag></tag> format. Without this tag, RapydML will complain about any tags not specifically mentioned in the markup file.
 
 ##### Example:
 
