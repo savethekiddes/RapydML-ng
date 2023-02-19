@@ -60,7 +60,7 @@
 			<.>	href, hreflang, rel, target
 				<a>+
 				<area>	alt, coords, shape
-				<link>	sizes
+				<link>-
 			<source>	src
 			<style>+	scoped
 		<abbr>
