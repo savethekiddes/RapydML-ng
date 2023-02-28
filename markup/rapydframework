@@ -157,6 +157,7 @@
 		<ruby>
 		<rapydfw:component> src
 		<rapydfw:nested> src
+		<**page**>
 		<s>
 		<samp>
 		<script>+	async, charset, defer, src, type
