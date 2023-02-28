@@ -60,7 +60,7 @@
 			<.>	href, hreflang, rel, target
 				<a>+
 				<area>	alt, coords, shape
-				<link>	sizes
+				<link>- src, crossorigin, href, sizes
 			<source>	src
 			<style>+	scoped
 		<abbr>
@@ -155,8 +155,8 @@
 		<rp>
 		<rt>
 		<ruby>
-		<rapydfw:component>
-		<rapydfw:nested>
+		<rapydfw:component> src
+		<rapydfw:nested> src
 		<s>
 		<samp>
 		<script>+	async, charset, defer, src, type
