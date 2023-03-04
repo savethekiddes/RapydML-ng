@@ -142,6 +142,7 @@
 			<label>
 			<output>	name
 		<legend>
+
 		<li>		value
 		<map>		name
 		<mark>
@@ -157,7 +158,7 @@
 		<ruby>
 		<rapydfw:component> src
 		<rapydfw:nested> src
-		<//page//>
+		<layout>
 		<s>
 		<samp>
 		<script>+	async, charset, defer, src, type
